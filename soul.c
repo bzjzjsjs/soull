@@ -90,7 +90,6 @@ int main(int argc, char *argv[]) {
     }
 
     free(thread_ids);
-    printf("Attack finished\n
-");
+    printf("Attack finished\n");
     return 0;
 }
