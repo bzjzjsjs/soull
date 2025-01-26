@@ -40,7 +40,7 @@ def configure_ngrok():
 def update_soul_txt(public_url):
     with open("aryan3.txt", "w") as file:
         file.write(public_url)
-    print(f"New ngrok link saved in soul3.txt")
+    print(f"New ngrok link saved in aryan3.txt")
 
 def update_vps_soul_txt(public_url):
     vps_ip = "147.93.30.18"
@@ -56,9 +56,9 @@ def update_vps_soul_txt(public_url):
             file.write(public_url)
         sftp.close()
         ssh.close()
-        print("Updated soul3.txt on VPS successfully.")
+        print("Updated aryan3.txt on VPS successfully.")
     except Exception as e:
-        print(f"Failed to update soul3.txt on VPS: {str(e)}")
+        print(f"Failed to update aryan3.txt on VPS: {str(e)}")
 
 def execute_command_async(command, duration):
     def run():
