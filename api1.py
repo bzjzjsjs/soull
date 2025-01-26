@@ -45,6 +45,53 @@ def update_soul_txt(public_url):
 def update_vps_soul_txt(public_url):
     vps_ip = "147.93.30.18"
     vps_user = "root"
+import time
+import os
+import subprocess
+import threading
+import time
+from flask import Flask, request, jsonify, send_from_directory
+from pyngrok import ngrok
+import paramiko
+
+def install_packages():
+    required_packages = ['Flask', 'pyngrok', 'paramiko']
+    for package in required_packages:
+        try:
+            subprocess.check_call([f'{os.sys.executable}', '-m', 'pip', 'show', package])
+        except subprocess.CalledProcessError:
+            try:
+                subprocess.check_call([f'{os.sys.executable}', '-m', 'pip', 'install', package])
+                print(f"{package} installed successfully.")
+            except subprocess.CalledProcessError:
+                print(f"Failed to install {package}.")
+
+def configure_ngrok():
+    ngrok_token = "2sAI3vDy0SSxnARjgPhPhxDgHWz_2utkbDtkLE7H11NgDZdBU"
+    while True:
+        try:
+            ngrok.set_auth_token(ngrok_token)
+            print("ngrok token configured successfully.")
+            public_url_obj = ngrok.connect(5000)
+            public_url = public_url_obj.public_url
+            print(f"Public URL: {public_url}")
+            return public_url
+        except Exception as e:
+            if "ERR_NGROK_108" in str(e):
+                print("ngrok token is already in use or limited. Retrying in 30 seconds...")
+                time.sleep(30)
+            else:
+                print(f"Failed to configure ngrok: {str(e)}")
+                break
+
+def update_soul_txt(public_url):
+    with open("cyber1.txt", "w") as file:
+        file.write(public_url)
+    print(f"New ngrok link saved in cyber1.txt")
+
+def update_vps_soul_txt(public_url):
+    vps_ip = "147.93.30.18"
+    vps_user = "root"
     vps_password = "SoulCracks@90011"
 
     try:
@@ -56,9 +103,9 @@ def update_vps_soul_txt(public_url):
             file.write(public_url)
         sftp.close()
         ssh.close()
-        print("Updated soul3.txt on VPS successfully.")
+        print("Updated cyber1.txt on VPS successfully.")
     except Exception as e:
-        print(f"Failed to update soul3.txt on VPS: {str(e)}")
+        print(f"Failed to update cyber1.txt on VPS: {str(e)}")
 
 def execute_command_async(command, duration):
     def run():
