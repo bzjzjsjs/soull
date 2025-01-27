@@ -173,7 +173,7 @@ def handle_attack_command(message):
                                        "*Check remaining time with the /when command.*", parse_mode='Markdown')
             return
 
-        bot.send_message(chat_id, "*💣 Ready to launch an /attack?*\n"  # Ready to launch message
+        bot.send_message(chat_id, "*💣 Ready to launch an attack?*\n"  # Ready to launch message
                                    "*Please provide the target IP, port, and duration in seconds.*\n" 
                                    "*Example: 167.67.25 6296 60* 🔥\n"  # Example message
                                    "*Let the chaos begin! 🎉*", parse_mode='Markdown')
@@ -325,7 +325,14 @@ def owner_command(message):
 @bot.message_handler(commands=['start'])
 def start_message(message):
     try:
-        bot.send_message(message.chat.id, "*🔆 WELCOME TO VIP DDOS BOT 🔆*", reply_markup=markup, parse_mode='Markdown')
+        bot.send_message(message.chat.id, "*🌍 WELCOME TO DDOS WORLD!* 🎉\n\n"
+                                           "*🚀 Get ready to dive into the action!*\n\n"
+                                           "*💣 To unleash your power, use the* `/attack` *command followed by your target's IP and port.* ⚔️\n\n"
+                                           "*🔍 Example: After* `/attack`, *enter:* `ip port duration`.\n\n"
+                                           "*🔥 Ensure your target is locked in before you strike!*\n\n"
+                                           "*📚 New around here? Check out the* `/help` *command to discover all my capabilities.* 📜\n\n"
+                                           "*⚠️ Remember, with great power comes great responsibility! Use it wisely... or let the chaos reign!* 😈💥", 
+                                           parse_mode='Markdown')
     except Exception as e:
         print(f"Error while processing /start command: {e}")
 
